@@ -1,0 +1,77 @@
+10
+
+dir
+1
+https://kenai.com/svn/avrbridgejava~avrbridgejava/avrBridgeJava
+https://kenai.com/svn/avrbridgejava~avrbridgejava
+
+
+
+2009-05-12T15:51:48.631769Z
+1
+ka010
+has-props
+has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+a40ca29e-87f7-e5d1-812c-bb0013ddbcfb
+
+nbproject
+dir
+
+
+
+add
+
+jniTest.h
+file
+0
+
+
+add
+
+src
+dir
+
+
+
+add
+
+manifest.mf
+file
+0
+
+
+add
+
+libavrBridgeJNI.so
+file
+0
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+build.xml
+file
+0
+
+
+add
+
