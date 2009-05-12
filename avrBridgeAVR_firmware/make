@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# make.sh
+# Untitled
+#
+# Created by dr3ad on 30/03/2009.
+# Copyright 2009 __MyCompanyName__. All rights reserved.
+
+case $1 in "make")
+	make
+esac
+
+case $1 in "flash")
+	make flash

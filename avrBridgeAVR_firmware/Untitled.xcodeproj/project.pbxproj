@@ -1,0 +1,209 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXFileReference section */
+		8D1769310F80EFBB002E1013 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		8D1769320F80EFBB002E1013 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		8D1769340F80EFBB002E1013 /* asmcommon.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = asmcommon.inc; sourceTree = "<group>"; };
+		8D1769350F80EFBB002E1013 /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
+		8D1769360F80EFBB002E1013 /* CommercialLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommercialLicense.txt; sourceTree = "<group>"; };
+		8D1769370F80EFBB002E1013 /* iarcompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iarcompat.h; sourceTree = "<group>"; };
+		8D1769380F80EFBB002E1013 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		8D1769390F80EFBB002E1013 /* oddebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = oddebug.c; sourceTree = "<group>"; };
+		8D17693A0F80EFBB002E1013 /* oddebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oddebug.h; sourceTree = "<group>"; };
+		8D17693B0F80EFBB002E1013 /* oddebug.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = oddebug.o; sourceTree = "<group>"; };
+		8D17693C0F80EFBB002E1013 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		8D17693D0F80EFBB002E1013 /* usbconfig-prototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbconfig-prototype.h"; sourceTree = "<group>"; };
+		8D17693E0F80EFBB002E1013 /* usbdrv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = usbdrv.c; sourceTree = "<group>"; };
+		8D17693F0F80EFBB002E1013 /* usbdrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbdrv.h; sourceTree = "<group>"; };
+		8D1769400F80EFBB002E1013 /* usbdrv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrv.o; sourceTree = "<group>"; };
+		8D1769410F80EFBB002E1013 /* usbdrvasm.asm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm.asm; path = usbdrvasm.asm; sourceTree = "<group>"; };
+		8D1769420F80EFBB002E1013 /* usbdrvasm.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrvasm.o; sourceTree = "<group>"; };
+		8D1769430F80EFBB002E1013 /* usbdrvasm.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = usbdrvasm.S; sourceTree = "<group>"; };
+		8D1769440F80EFBB002E1013 /* usbdrvasm12.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm12.inc; sourceTree = "<group>"; };
+		8D1769450F80EFBB002E1013 /* usbdrvasm15.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm15.inc; sourceTree = "<group>"; };
+		8D1769460F80EFBB002E1013 /* usbdrvasm16.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm16.inc; sourceTree = "<group>"; };
+		8D1769470F80EFBB002E1013 /* usbdrvasm165.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm165.inc; sourceTree = "<group>"; };
+		8D1769480F80EFBB002E1013 /* USBID-License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USBID-License.txt"; sourceTree = "<group>"; };
+		8D1769490F80EFBB002E1013 /* usbconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbconfig.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		8D17691C0F80EF31002E1013 = {
+			isa = PBXGroup;
+			children = (
+				8D1769310F80EFBB002E1013 /* main.c */,
+				8D1769320F80EFBB002E1013 /* Makefile */,
+				8D1769330F80EFBB002E1013 /* usbdrv */,
+				8D1769490F80EFBB002E1013 /* usbconfig.h */,
+			);
+			sourceTree = "<group>";
+		};
+		8D1769330F80EFBB002E1013 /* usbdrv */ = {
+			isa = PBXGroup;
+			children = (
+				8D1769340F80EFBB002E1013 /* asmcommon.inc */,
+				8D1769350F80EFBB002E1013 /* Changelog.txt */,
+				8D1769360F80EFBB002E1013 /* CommercialLicense.txt */,
+				8D1769370F80EFBB002E1013 /* iarcompat.h */,
+				8D1769380F80EFBB002E1013 /* License.txt */,
+				8D1769390F80EFBB002E1013 /* oddebug.c */,
+				8D17693A0F80EFBB002E1013 /* oddebug.h */,
+				8D17693B0F80EFBB002E1013 /* oddebug.o */,
+				8D17693C0F80EFBB002E1013 /* Readme.txt */,
+				8D17693D0F80EFBB002E1013 /* usbconfig-prototype.h */,
+				8D17693E0F80EFBB002E1013 /* usbdrv.c */,
+				8D17693F0F80EFBB002E1013 /* usbdrv.h */,
+				8D1769400F80EFBB002E1013 /* usbdrv.o */,
+				8D1769410F80EFBB002E1013 /* usbdrvasm.asm */,
+				8D1769420F80EFBB002E1013 /* usbdrvasm.o */,
+				8D1769430F80EFBB002E1013 /* usbdrvasm.S */,
+				8D1769440F80EFBB002E1013 /* usbdrvasm12.inc */,
+				8D1769450F80EFBB002E1013 /* usbdrvasm15.inc */,
+				8D1769460F80EFBB002E1013 /* usbdrvasm16.inc */,
+				8D1769470F80EFBB002E1013 /* usbdrvasm165.inc */,
+				8D1769480F80EFBB002E1013 /* USBID-License.txt */,
+			);
+			path = usbdrv;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		8D17692A0F80EF7F002E1013 /* Untitled */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(COMMAND)";
+			buildConfigurationList = 8D1769300F80EF9D002E1013 /* Build configuration list for PBXLegacyTarget "Untitled" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Untitled;
+			passBuildSettingsInEnvironment = 1;
+			productName = Untitled;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		8D17691E0F80EF31002E1013 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 8D1769210F80EF31002E1013 /* Build configuration list for PBXProject "Untitled" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = 8D17691C0F80EF31002E1013;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D17692A0F80EF7F002E1013 /* Untitled */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		8D17691F0F80EF31002E1013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		8D1769200F80EF31002E1013 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		8D17692B0F80EF7F002E1013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Untitled;
+			};
+			name = Debug;
+		};
+		8D17692C0F80EF7F002E1013 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Untitled;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8D17696F0F80F5F7002E1013 /* Build */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Build;
+		};
+		8D1769700F80F5F7002E1013 /* Build */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMMAND = "";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Untitled;
+			};
+			name = Build;
+		};
+		8D1769710F80F5FD002E1013 /* Deploy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Deploy;
+		};
+		8D1769720F80F5FD002E1013 /* Deploy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMMAND = flash;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Untitled;
+			};
+			name = Deploy;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D1769210F80EF31002E1013 /* Build configuration list for PBXProject "Untitled" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D17696F0F80F5F7002E1013 /* Build */,
+				8D1769710F80F5FD002E1013 /* Deploy */,
+				8D17691F0F80EF31002E1013 /* Debug */,
+				8D1769200F80EF31002E1013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D1769300F80EF9D002E1013 /* Build configuration list for PBXLegacyTarget "Untitled" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D1769700F80F5F7002E1013 /* Build */,
+				8D1769720F80F5FD002E1013 /* Deploy */,
+				8D17692B0F80EF7F002E1013 /* Debug */,
+				8D17692C0F80EF7F002E1013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8D17691E0F80EF31002E1013 /* Project object */;
+}

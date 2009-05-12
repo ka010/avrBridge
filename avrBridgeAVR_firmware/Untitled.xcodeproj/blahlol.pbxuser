@@ -1,0 +1,560 @@
+// !$*UTF8*$!
+{
+	8D17691E0F80EF31002E1013 /* Project object */ = {
+		activeBuildConfigurationName = Deploy;
+		activeTarget = 8D17692A0F80EF7F002E1013 /* Untitled */;
+		addToTargets = (
+		);
+		breakpoints = (
+			8D1769FB0F819781002E1013 /* powerSwitch.c:191 */,
+			8D5CB5360FA0F4AE00EF7365 /* main.c:55 */,
+			8D5CB5380FA0F4B100EF7365 /* main.c:56 */,
+			8D5908050FB9ADFE007AC2B9 /* main.c:330 */,
+		);
+		codeSenseManager = 8D1769230F80EF31002E1013 /* Code sense */;
+		ignoreBreakpointsInProjectsDict = {
+		};
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					605,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					323,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 263809923;
+			PBXWorkspaceStateSaveDate = 263809923;
+		};
+		perUserProjectItems = {
+			8D260BEA0F9B5B9200D9A1A8 = 8D260BEA0F9B5B9200D9A1A8 /* PBXTextBookmark */;
+			8D5907FE0FB96B93007AC2B9 /* PBXTextBookmark */ = 8D5907FE0FB96B93007AC2B9 /* PBXTextBookmark */;
+			8D5907FF0FB96B93007AC2B9 /* PBXTextBookmark */ = 8D5907FF0FB96B93007AC2B9 /* PBXTextBookmark */;
+			8D5908060FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D5908060FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D5908070FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D5908070FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D5908080FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D5908080FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080A0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080A0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080B0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080B0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080C0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080C0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080D0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080D0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080E0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080E0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D59080F0FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D59080F0FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D5908100FB9AE06007AC2B9 /* PBXTextBookmark */ = 8D5908100FB9AE06007AC2B9 /* PBXTextBookmark */;
+			8D5CB5070F9B8BF600EF7365 = 8D5CB5070F9B8BF600EF7365 /* PBXTextBookmark */;
+			8D5CB50B0F9B8BF600EF7365 = 8D5CB50B0F9B8BF600EF7365 /* PBXTextBookmark */;
+			8D5CB50E0F9B8BF600EF7365 = 8D5CB50E0F9B8BF600EF7365 /* PBXTextBookmark */;
+			8D5CB5110F9B8BF600EF7365 = 8D5CB5110F9B8BF600EF7365 /* PBXTextBookmark */;
+			8D5CB52F0FA0F13700EF7365 = 8D5CB52F0FA0F13700EF7365 /* PBXTextBookmark */;
+			8D7CF9000F94EF8E0097E713 = 8D7CF9000F94EF8E0097E713 /* PBXTextBookmark */;
+			8D93F9FD0FB793BB009CF301 = 8D93F9FD0FB793BB009CF301 /* PBXTextBookmark */;
+			8D93F9FE0FB793BB009CF301 = 8D93F9FE0FB793BB009CF301 /* PBXTextBookmark */;
+			8DB30E9C0FAB900A00A1A13C = 8DB30E9C0FAB900A00A1A13C /* PBXTextBookmark */;
+			8DB30E9E0FAB900A00A1A13C = 8DB30E9E0FAB900A00A1A13C /* PBXTextBookmark */;
+			8DFA905B0FB661690052422E = 8DFA905B0FB661690052422E /* PBXTextBookmark */;
+			8DFA905E0FB661690052422E = 8DFA905E0FB661690052422E /* PBXTextBookmark */;
+			8DFA90720FB6EC240052422E = 8DFA90720FB6EC240052422E /* PBXTextBookmark */;
+			8DFA90740FB6EC240052422E = 8DFA90740FB6EC240052422E /* PBXTextBookmark */;
+			8DFA90750FB6EC240052422E = 8DFA90750FB6EC240052422E /* PBXTextBookmark */;
+			8DFA90760FB6EC240052422E = 8DFA90760FB6EC240052422E /* PBXTextBookmark */;
+		};
+		sourceControlManager = 8D1769220F80EF31002E1013 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1769220F80EF31002E1013 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	8D1769230F80EF31002E1013 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8D17692A0F80EF7F002E1013 /* Untitled */ = {
+		activeExec = 0;
+	};
+	8D1769310F80EFBB002E1013 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {783, 5012}}";
+			sepNavSelRange = "{7093, 0}";
+			sepNavVisRange = "{6684, 1099}";
+			sepNavWindowFrame = "{{628, 6}, {785, 1022}}";
+		};
+	};
+	8D1769320F80EFBB002E1013 /* Makefile */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {858, 1148}}";
+			sepNavSelRange = "{2432, 0}";
+			sepNavVisRange = "{0, 1728}";
+		};
+	};
+	8D17693F0F80EFBB002E1013 /* usbdrv.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1419, 9660}}";
+			sepNavSelRange = "{4116, 0}";
+			sepNavVisRange = "{21597, 1121}";
+		};
+	};
+	8D1769490F80EFBB002E1013 /* usbconfig.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {783, 3486}}";
+			sepNavSelRange = "{6929, 1}";
+			sepNavVisRange = "{6112, 143}";
+		};
+	};
+	8D1769F90F819781002E1013 /* powerSwitch.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = powerSwitch.c;
+		path = "/Users/blahlol/Share/workspace/avr/PowerSwitch.2008-02-28/commandline/powerSwitch.c";
+		sourceTree = "<absolute>";
+	};
+	8D1769FB0F819781002E1013 /* powerSwitch.c:191 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8D1769F90F819781002E1013 /* powerSwitch.c */;
+		functionName = "main()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 191;
+		modificationTime = 262438714.4083861;
+		state = 2;
+	};
+	8D260BEA0F9B5B9200D9A1A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D17693F0F80EFBB002E1013 /* usbdrv.h */;
+		name = "usbdrv.h: 84";
+		rLen = 0;
+		rLoc = 4116;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 21597;
+	};
+	8D260BEC0F9B5B9200D9A1A8 /* usblibtest.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = usblibtest.c;
+		path = "/Users/blahlol/Share/workspace/avr/xcode_test-host/usblib/usblibtest.c";
+		sourceTree = "<absolute>";
+	};
+	8D5907FE0FB96B93007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 306";
+		rLen = 0;
+		rLoc = 6879;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2156;
+	};
+	8D5907FF0FB96B93007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769490F80EFBB002E1013 /* usbconfig.h */;
+		name = "usbconfig.h: 153";
+		rLen = 1;
+		rLoc = 6929;
+		rType = 0;
+		vrLen = 143;
+		vrLoc = 6112;
+	};
+	8D5908050FB9ADFE007AC2B9 /* main.c:330 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8D1769310F80EFBB002E1013 /* main.c */;
+		functionName = "main()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 330;
+		modificationTime = 263826942.680257;
+		state = 1;
+	};
+	8D5908060FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 68";
+		rLen = 0;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 1298;
+		vrLoc = 4601;
+	};
+	8D5908070FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D7CF92C0F9528D50097E713 /* mega32_sequencer.c */;
+		name = "mega32_sequencer.c: 245";
+		rLen = 362;
+		rLoc = 9971;
+		rType = 0;
+		vrLen = 2485;
+		vrLoc = 6950;
+	};
+	8D5908080FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D5908090FB9AE06007AC2B9 /* mega8_synthesizer.c */;
+		name = "mega8_synthesizer.c: 161";
+		rLen = 438;
+		rLoc = 7391;
+		rType = 0;
+		vrLen = 1806;
+		vrLoc = 6279;
+	};
+	8D5908090FB9AE06007AC2B9 /* mega8_synthesizer.c */ = {
+		isa = PBXFileReference;
+		name = mega8_synthesizer.c;
+		path = /Users/blahlol/Share/workspace/avr/mega8_synthesizer/mega8_synthesizer.c;
+		sourceTree = "<absolute>";
+	};
+	8D59080A0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769320F80EFBB002E1013 /* Makefile */;
+		name = "Makefile: 68";
+		rLen = 0;
+		rLoc = 2432;
+		rType = 0;
+		vrLen = 1728;
+		vrLoc = 0;
+	};
+	8D59080B0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 329";
+		rLen = 0;
+		rLoc = 7093;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 6684;
+	};
+	8D59080C0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 68";
+		rLen = 0;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 1298;
+		vrLoc = 4601;
+	};
+	8D59080D0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D7CF92C0F9528D50097E713 /* mega32_sequencer.c */;
+		name = "mega32_sequencer.c: 245";
+		rLen = 362;
+		rLoc = 9971;
+		rType = 0;
+		vrLen = 2485;
+		vrLoc = 6950;
+	};
+	8D59080E0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769320F80EFBB002E1013 /* Makefile */;
+		name = "Makefile: 68";
+		rLen = 0;
+		rLoc = 2432;
+		rType = 0;
+		vrLen = 1728;
+		vrLoc = 0;
+	};
+	8D59080F0FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 329";
+		rLen = 0;
+		rLoc = 7093;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 6684;
+	};
+	8D5908100FB9AE06007AC2B9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769490F80EFBB002E1013 /* usbconfig.h */;
+		name = "usbconfig.h: 153";
+		rLen = 1;
+		rLoc = 6929;
+		rType = 0;
+		vrLen = 143;
+		vrLoc = 6112;
+	};
+	8D5CB5070F9B8BF600EF7365 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D5CB5080F9B8BF600EF7365 /* iom8.h */;
+		name = "iom8.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 8986;
+	};
+	8D5CB5080F9B8BF600EF7365 /* iom8.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = iom8.h;
+		path = "/usr/local/AVRMacPack-20090319/avr-4/include/avr/iom8.h";
+		sourceTree = "<absolute>";
+	};
+	8D5CB50B0F9B8BF600EF7365 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D5CB50C0F9B8BF600EF7365 /* iom8.h */;
+		name = "iom8.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 8986;
+	};
+	8D5CB50C0F9B8BF600EF7365 /* iom8.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = iom8.h;
+		path = "/usr/local/AVRMacPack-20090319/avr-4/include/avr/iom8.h";
+		sourceTree = "<absolute>";
+	};
+	8D5CB50E0F9B8BF600EF7365 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 69";
+		rLen = 0;
+		rLoc = 2394;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 1133;
+	};
+	8D5CB5110F9B8BF600EF7365 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 69";
+		rLen = 0;
+		rLoc = 2394;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 1133;
+	};
+	8D5CB52F0FA0F13700EF7365 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D260BEC0F9B5B9200D9A1A8 /* usblibtest.c */;
+		name = "usblibtest.c: 21";
+		rLen = 0;
+		rLoc = 1199;
+		rType = 0;
+		vrLen = 575;
+		vrLoc = 227;
+	};
+	8D5CB5360FA0F4AE00EF7365 /* main.c:55 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8D1769310F80EFBB002E1013 /* main.c */;
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 55;
+		modificationTime = 262438714.408492;
+		state = 2;
+	};
+	8D5CB5380FA0F4B100EF7365 /* main.c:56 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8D1769310F80EFBB002E1013 /* main.c */;
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 56;
+		modificationTime = 262438714.408633;
+		state = 2;
+	};
+	8D79DCA60FA63C310069B4A5 /* usblib.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = usblib.c;
+		path = "/Users/blahlol/Share/workspace/avr/xcode_test-host/usblib/usblib.c";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {912, 4004}}";
+			sepNavSelRange = "{1382, 0}";
+			sepNavVisRange = "{4601, 1298}";
+		};
+	};
+	8D7CF9000F94EF8E0097E713 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D7CF9010F94EF8E0097E713 /* usbtool.c */;
+		name = "usbtool.c: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 5523;
+	};
+	8D7CF9010F94EF8E0097E713 /* usbtool.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = usbtool.c;
+		path = "/Users/blahlol/Downloads/avrusb-20090323/examples/usbtool/usbtool.c";
+		sourceTree = "<absolute>";
+	};
+	8D7CF92C0F9528D50097E713 /* mega32_sequencer.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = mega32_sequencer.c;
+		path = /Users/blahlol/Share/workspace/avr/mega32_sequencer/mega32_sequencer.c;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1038, 14532}}";
+			sepNavSelRange = "{9971, 362}";
+			sepNavVisRange = "{6950, 2485}";
+		};
+	};
+	8D93F9FD0FB793BB009CF301 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 306";
+		rLen = 0;
+		rLoc = 6879;
+		rType = 0;
+		vrLen = 1306;
+		vrLoc = 4609;
+	};
+	8D93F9FE0FB793BB009CF301 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769490F80EFBB002E1013 /* usbconfig.h */;
+		name = "usbconfig.h: 153";
+		rLen = 1;
+		rLoc = 6929;
+		rType = 0;
+		vrLen = 143;
+		vrLoc = 6112;
+	};
+	8DB30E9C0FAB900A00A1A13C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 20";
+		rLen = 0;
+		rLoc = 537;
+		rType = 0;
+		vrLen = 779;
+		vrLoc = 1283;
+	};
+	8DB30E9E0FAB900A00A1A13C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 20";
+		rLen = 0;
+		rLoc = 537;
+		rType = 0;
+		vrLen = 779;
+		vrLoc = 1283;
+	};
+	8DFA905B0FB661690052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 68";
+		rLen = 0;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 1298;
+		vrLoc = 4601;
+	};
+	8DFA905E0FB661690052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D79DCA60FA63C310069B4A5 /* usblib.c */;
+		name = "usblib.c: 68";
+		rLen = 0;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 1298;
+		vrLoc = 4601;
+	};
+	8DFA90720FB6EC240052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D7CF92C0F9528D50097E713 /* mega32_sequencer.c */;
+		name = "mega32_sequencer.c: 245";
+		rLen = 362;
+		rLoc = 9971;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 38196;
+	};
+	8DFA90740FB6EC240052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D7CF92C0F9528D50097E713 /* mega32_sequencer.c */;
+		name = "mega32_sequencer.c: 245";
+		rLen = 362;
+		rLoc = 9971;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 38196;
+	};
+	8DFA90750FB6EC240052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769310F80EFBB002E1013 /* main.c */;
+		name = "main.c: 306";
+		rLen = 0;
+		rLoc = 6879;
+		rType = 0;
+		vrLen = 1196;
+		vrLoc = 4291;
+	};
+	8DFA90760FB6EC240052422E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1769490F80EFBB002E1013 /* usbconfig.h */;
+		name = "usbconfig.h: 153";
+		rLen = 1;
+		rLoc = 6929;
+		rType = 0;
+		vrLen = 143;
+		vrLoc = 6112;
+	};
+}
