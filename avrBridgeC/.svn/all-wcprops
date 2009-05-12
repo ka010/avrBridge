@@ -1,0 +1,21 @@
+K 26
+svn:wc:ra_dav:activity-url
+V 39
+/svn/avrbridgejava~avrbridgec/!svn/act/
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/avrbridgejava~avrbridgec/!svn/ver/2/avrBridgeC
+END
+avrBridgeC.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/avrbridgejava~avrbridgec/!svn/ver/2/avrBridgeC/avrBridgeC.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/avrbridgejava~avrbridgec/!svn/ver/2/avrBridgeC/Makefile
+END
