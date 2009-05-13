@@ -15,6 +15,7 @@ import avrBridgeJavaDev.*;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JSlider;
 import javax.swing.Timer;
 
 
@@ -31,6 +32,7 @@ public class gui extends javax.swing.JFrame {
 
     private avr m8;
     private Timer t = new Timer(100,new timerListener() );
+    private Timer uiTimer = new Timer(100,new uiUpdateListener() );
     /** Creates new form gui */
     public gui(avr m8) {
         //this.setMaximumSize(new Dimension(300,500));
@@ -54,6 +56,7 @@ public class gui extends javax.swing.JFrame {
        // m8.setPortPin(1,0,0);
         //m8.setPort(1, 0x00);
         initComponents();
+        uiTimer.start();
     }
 
     /** This method is called from within the constructor to
@@ -71,14 +74,33 @@ public class gui extends javax.swing.JFrame {
         buttonGroup4 = new javax.swing.ButtonGroup();
         buttonGroup5 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        button1 = new javax.swing.JToggleButton();
-        button2 = new javax.swing.JToggleButton();
         jPanel8 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
-        jButton4 = new javax.swing.JButton();
+        button1 = new javax.swing.JToggleButton();
+        button2 = new javax.swing.JToggleButton();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jSlider2 = new javax.swing.JSlider();
+        jSlider3 = new javax.swing.JSlider();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -106,28 +128,14 @@ public class gui extends javax.swing.JFrame {
         jCheckBox6 = new javax.swing.JCheckBox();
         jTextField4 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
-        button1.setText("Connect");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(button1);
-
-        button2.setText("LED OFF");
-        button2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(button2);
-
-        jPanel1.add(jPanel4);
+        jLabel2.setText("RGB LED");
+        jPanel8.add(jLabel2);
 
         jToggleButton1.setText("Red");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,15 +161,87 @@ public class gui extends javax.swing.JFrame {
         });
         jPanel8.add(jToggleButton3);
 
-        jButton4.setText("update");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        button1.setText("start Timer");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton4);
+        jPanel8.add(button1);
+
+        button2.setText("all Ports LOW");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(button2);
 
         jPanel1.add(jPanel8);
+
+        jPanel10.setLayout(new javax.swing.BoxLayout(jPanel10, javax.swing.BoxLayout.PAGE_AXIS));
+
+        jLabel6.setText("ADC");
+        jPanel12.add(jLabel6);
+
+        jLabel7.setText("0:");
+        jPanel12.add(jLabel7);
+
+        jTextField5.setText("jTextField5");
+        jPanel12.add(jTextField5);
+
+        jLabel8.setText("1:");
+        jPanel12.add(jLabel8);
+
+        jTextField6.setText("jTextField5");
+        jPanel12.add(jTextField6);
+
+        jLabel9.setText("2:");
+        jPanel12.add(jLabel9);
+
+        jTextField7.setText("jTextField5");
+        jPanel12.add(jTextField7);
+
+        jLabel10.setText("3:");
+        jPanel12.add(jLabel10);
+
+        jTextField8.setText("jTextField5");
+        jPanel12.add(jTextField8);
+
+        jLabel11.setText("4:");
+        jPanel12.add(jLabel11);
+
+        jTextField9.setText("jTextField5");
+        jPanel12.add(jTextField9);
+
+        jLabel12.setText("5:");
+        jPanel12.add(jLabel12);
+
+        jTextField10.setText("jTextField5");
+        jPanel12.add(jTextField10);
+
+        jPanel10.add(jPanel12);
+
+        jLabel1.setText("DAC");
+        jPanel11.add(jLabel1);
+
+        jSlider1.setMaximum(255);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+        jPanel11.add(jSlider1);
+
+        jSlider2.setMaximum(255);
+        jPanel11.add(jSlider2);
+
+        jSlider3.setMaximum(255);
+        jPanel11.add(jSlider3);
+
+        jPanel10.add(jPanel11);
+
+        jPanel1.add(jPanel10);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -175,10 +255,15 @@ public class gui extends javax.swing.JFrame {
         jLabel4.setText("PORTB:Pin");
         jPanel6.add(jLabel4);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", " " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
         jPanel6.add(jComboBox3);
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OUTPUT", "INPUT", "ADC" }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jComboBox4);
 
         jCheckBox3.setText("Pullup");
@@ -196,6 +281,8 @@ public class gui extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jCheckBox4);
+
+        jTextField2.setPreferredSize(new java.awt.Dimension(120, 28));
         jPanel6.add(jTextField2);
 
         jButton2.setText("update");
@@ -233,6 +320,7 @@ public class gui extends javax.swing.JFrame {
         });
         jPanel5.add(jCheckBox2);
 
+        jTextField3.setPreferredSize(new java.awt.Dimension(120, 28));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -257,6 +345,11 @@ public class gui extends javax.swing.JFrame {
         jPanel7.add(jComboBox5);
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OUTPUT", "INPUT" }));
+        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox6ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jComboBox6);
 
         jCheckBox5.setText("Pullup");
@@ -274,6 +367,8 @@ public class gui extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jCheckBox6);
+
+        jTextField4.setPreferredSize(new java.awt.Dimension(120, 28));
         jPanel7.add(jTextField4);
 
         jButton3.setText("update");
@@ -289,6 +384,7 @@ public class gui extends javax.swing.JFrame {
         jPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel9, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,6 +403,9 @@ public class gui extends javax.swing.JFrame {
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
        m8.setPort(m8.PORTB, 0xFF);
+       m8.setPort(m8.PORTC, 0xFF);
+       m8.setPort(m8.PORTD, 0xFF);
+
 }//GEN-LAST:event_button2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -339,11 +438,9 @@ public class gui extends javax.swing.JFrame {
            m8.setPortPin(m8.PORTC, pin, m8.LOW);
        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
@@ -357,7 +454,34 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+      String command = this.jComboBox4.getSelectedItem().toString();
+       int pin        = Integer.valueOf(this.jComboBox3.getSelectedItem().toString());
+
+       if (command.equals("OUTPUT"))  {
+           if (this.jCheckBox4.isSelected()){
+               m8.setPortPinDir(m8.PORTB, pin, m8.OUT);
+               m8.setPortPin(m8.PORTB, pin, m8.HIGH);
+           }
+           else {
+               m8.setPortPinDir(m8.PORTB, pin, m8.OUT);
+               m8.setPortPin(m8.PORTB, pin, m8.LOW);
+           }
+       }
+       else if (command.equals("INPUT")) {
+           if (this.jCheckBox3.isSelected()) {
+               m8.setPortPinDir(m8.PORTB, pin, m8.IN);
+               m8.setPortPin(m8.PORTB, pin, m8.ON);
+           }
+           else {
+              m8.setPortPinDir(m8.PORTB, pin, m8.IN);
+              m8.setPortPin(m8.PORTB, pin, m8.OFF);
+           }
+
+       }
+       else if (command.equals("ADC")) {
+           m8.setPortPinDir(m8.PORTB, pin, m8.OUT);
+           m8.setPortPin(m8.PORTB, pin, m8.LOW);
+       }    // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -369,12 +493,35 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+         String command = this.jComboBox6.getSelectedItem().toString();
+       int pin        = Integer.valueOf(this.jComboBox5.getSelectedItem().toString());
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+       if (command.equals("OUTPUT"))  {
+           if (this.jCheckBox6.isSelected()){
+               m8.setPortPinDir(m8.PORTD, pin, m8.OUT);
+               m8.setPortPin(m8.PORTD, pin, m8.HIGH);
+           }
+           else {
+               m8.setPortPinDir(m8.PORTD, pin, m8.OUT);
+               m8.setPortPin(m8.PORTD, pin, m8.LOW);
+           }
+       }
+       else if (command.equals("INPUT")) {
+           if (this.jCheckBox5.isSelected()) {
+               m8.setPortPinDir(m8.PORTD, pin, m8.IN);
+               m8.setPortPin(m8.PORTD, pin, m8.ON);
+           }
+           else {
+              m8.setPortPinDir(m8.PORTD, pin, m8.IN);
+              m8.setPortPin(m8.PORTD, pin, m8.OFF);
+           }
+
+       }
+       else if (command.equals("ADC")) {
+           m8.setPortPinDir(m8.PORTD, pin, m8.OUT);
+           m8.setPortPin(m8.PORTD, pin, m8.LOW);
+       }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -407,6 +554,19 @@ public class gui extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+  
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+
+    }//GEN-LAST:event_jComboBox6ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+       JSlider sl = (JSlider) evt.getSource();
+       this.m8.setDac(0, sl.getValue());
+    }//GEN-LAST:event_jSlider1StateChanged
+
   
     /**
     * @param args the command line arguments
@@ -424,7 +584,6 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -437,25 +596,63 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider jSlider3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
+
+    private class uiUpdateListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            jTextField2.setText(Integer.toBinaryString(m8.getPort(m8.PORTB)));
+            jTextField3.setText(Integer.toBinaryString(m8.getPort(m8.PORTC)));
+            jTextField4.setText(Integer.toBinaryString(m8.getPort(m8.PORTD)));
+
+             jTextField5.setText(String.valueOf( m8.getAdc(0)));
+             jTextField6.setText(String.valueOf(m8.getAdc(1)));
+             jTextField7.setText(String.valueOf(m8.getAdc(2)));
+             jTextField8.setText(String.valueOf(m8.getAdc(3)));
+             jTextField9.setText(String.valueOf(m8.getAdc(4)));
+             jTextField10.setText(String.valueOf(m8.getAdc(5)));
+        }
+
+    }
 
     private class timerListener implements ActionListener {
         private int buffer[] = {0,0,0,0,0,0,0,0,0,0};

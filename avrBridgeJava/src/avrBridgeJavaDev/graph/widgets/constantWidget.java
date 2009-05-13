@@ -5,10 +5,18 @@
 
 package avrBridgeJavaDev.graph.widgets;
 
+import avrBridgeJavaDev.avr;
+import org.netbeans.api.visual.widget.Scene;
+
 /**
  *
  * @author blahlol
  */
-public class constantWidget {
+public class constantWidget extends genericWidget {
+
+    public constantWidget(Scene sc, String id, avr m8) {
+        super(sc,id,m8);
+    }
+
 
 }

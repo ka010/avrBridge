@@ -1,0 +1,92 @@
+10
+
+dir
+0
+https://kenai.com/svn/avrbridgejava~avrbridgejava/avrBridgeJava/src/avrBridgeJavaDev/graph/widgets
+https://kenai.com/svn/avrbridgejava~avrbridgejava
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a40ca29e-87f7-e5d1-812c-bb0013ddbcfb
+
+
+
+
+
+
+
+empty
+
+genericWidget.java
+file
+
+
+
+add
+
+timerWidget.java
+file
+
+
+
+add
+
+portWidget.java
+file
+
+
+
+add
+
+displayWidget.java
+file
+
+
+
+add
+
+pinWidget.java
+file
+
+
+
+add
+
+inputPinWidget.java
+file
+
+
+
+add
+
+outputPinWidget.java
+file
+
+
+
+add
+
+constantWidget.java
+file
+
+
+
+add
+

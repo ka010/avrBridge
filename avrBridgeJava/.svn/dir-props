@@ -1,7 +1,8 @@
 K 10
 svn:ignore
-V 11
+V 16
 dist
 build
+.git
 
 END
