@@ -11,6 +11,7 @@ import avrBridgeJavaDev.graph.avrSceneConnectProvider;
 import javax.swing.BorderFactory;
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.api.visual.widget.Widget;
 
 /**
  *
@@ -18,8 +19,8 @@ import org.netbeans.api.visual.widget.Scene;
  */
 public class outputPinWidget extends genericWidget {
 
-    public outputPinWidget(Scene sc, String id, avr m8) {
-        super(sc,id,m8);
+    public outputPinWidget(Scene sc, String id, avr m8,Widget parent) {
+        super(sc,id,m8,parent);
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setTitle("[o]");
         avrScene scene = (avrScene) sc;

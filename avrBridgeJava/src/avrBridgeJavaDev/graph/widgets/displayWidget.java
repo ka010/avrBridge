@@ -7,6 +7,7 @@ package avrBridgeJavaDev.graph.widgets;
 
 import avrBridgeJavaDev.avr;
 import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.api.visual.widget.Widget;
 
 /**
  *
@@ -14,13 +15,15 @@ import org.netbeans.api.visual.widget.Scene;
  */
 public class displayWidget extends genericWidget {
 
-    public displayWidget(Scene sc, String id, avr m8) {
-        super(sc,id,m8);
+    public displayWidget(Scene sc, String id, avr m8,Widget parent) {
+        super(sc,id,m8,parent);
+        this.addDisplay();
+        this.addInputPin();
     }
 
     @Override
     public void tick() {
-
+        this.setDisplay(Integer.toBinaryString(val));
     }
 
 

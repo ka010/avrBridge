@@ -11,14 +11,25 @@ import avrBridgeJavaDev.graph.widgets.constantWidget;
 import avrBridgeJavaDev.graph.widgets.dacWidget;
 import avrBridgeJavaDev.graph.widgets.displayWidget;
 import avrBridgeJavaDev.graph.widgets.genericWidget;
+import avrBridgeJavaDev.graph.widgets.genericWidget.timerListener;
 import avrBridgeJavaDev.graph.widgets.pinWidget;
 import avrBridgeJavaDev.graph.widgets.portWidget;
 import avrBridgeJavaDev.graph.widgets.timerWidget;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
+import javax.swing.Timer;
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.action.EditProvider;
 import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.anchor.Anchor;
 import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.graph.GraphScene;
+import org.netbeans.api.visual.graph.layout.GraphLayout;
+import org.netbeans.api.visual.graph.layout.GraphLayoutFactory;
+import org.netbeans.api.visual.graph.layout.GraphLayoutSupport;
+import org.netbeans.api.visual.graph.layout.GridGraphLayout;
+import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.layout.SceneLayout;
 import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.EventProcessingType;
@@ -49,6 +60,24 @@ public class avrScene extends GraphScene<String, String> {
     private WidgetAction hoverAction = createObjectHoverAction ();
     //private WidgetAction moveAction =(ActionFactory.createMoveAction (ActionFactory.createSnapToGridMoveStrategy (16, 16),new MultiMoveProvider()));
     private WidgetAction moveAction2 =ActionFactory.createMoveAction();
+
+    private Timer timer = new Timer(200, new ActionListener() {
+
+        public void actionPerformed(ActionEvent e) {
+            Widget w = null;
+            genericWidget gw = null;
+            
+            Iterator it = mainLayer.getChildren().iterator();
+            while(it.hasNext()) {
+                w = (Widget) it.next();
+                if (w instanceof genericWidget ) {
+                    
+                    gw = (genericWidget) w;
+                    gw.tick();
+                }
+            }
+        }
+    });
     public avrScene(avr m8) {
         this.m8 =m8;
         backgroundLayer = new LayerWidget(this);
@@ -62,6 +91,20 @@ public class avrScene extends GraphScene<String, String> {
         this.addChild(interactionLayer);
         this.addChild(connectionLayer);
 
+        GraphLayout<String,String> graphLayout = new GridGraphLayout();
+       
+        final SceneLayout sceneGraphLayout = LayoutFactory.createSceneGraphLayout (this, graphLayout);
+
+        getActions ().addAction (ActionFactory.createEditAction (new EditProvider() {
+            public void edit (Widget widget) {
+                // new implementation
+                sceneGraphLayout.invokeLayoutImmediately ();
+                // old implementation
+//                new TreeGraphLayout<String, String> (TreeGraphLayoutTest.this, 100, 100, 50, 50, true).layout ("root");
+            }
+        }));
+
+
         this.addNode("portB");
         this.addNode("portC");
         this.addNode("portD");
@@ -69,24 +112,41 @@ public class avrScene extends GraphScene<String, String> {
         this.addNode("display0");
         this.addNode("timer0");
         this.addNode("dac0");
-        this.addNode("adc0");
+        this.addNode("adc1");
+        this.addNode("adc2");
+        this.addNode("adc3");
+        this.addNode("adc4");
+        this.addNode("adc5");
+        
+        this.timer.start();
     }
 
 
+    public Widget attachNodewidget(String node, String parent) {
+        Widget w = null;
+        genericWidget gw = (genericWidget) this.addNode(node);
+        gw.removeFromParent();
+        w = this.findWidget(parent);
+        if (w != null) w.addChild(gw);
+        return gw;
+    }
     @Override
     protected Widget attachNodeWidget(String node) {
        genericWidget gw=null;
 
-       if(node.startsWith("port")) gw = new portWidget(this,node,this.m8);
-       else if(node.startsWith("pin")) gw = new pinWidget(this,node,this.m8);
-       else if(node.startsWith("timer")) gw = new timerWidget(this,node,this.m8);
-       else if(node.startsWith("display")) gw = new displayWidget(this,node,this.m8);
-       else if(node.startsWith("constant")) gw = new constantWidget(this,node,this.m8);
-       else if(node.startsWith("dac")) gw = new dacWidget(this,node,this.m8);
-       else if(node.startsWith("adc")) gw = new adcWidget(this,node,this.m8);
+       if(node.startsWith("port")) {
+           gw = new portWidget(this,node,this.m8,this);
+       }
+       else if(node.startsWith("pin")) gw = new pinWidget(this,node,this.m8,this);
+       else if(node.startsWith("timer")) gw = new timerWidget(this,node,this.m8,this);
+       else if(node.startsWith("display")) gw = new displayWidget(this,node,this.m8,this);
+       else if(node.startsWith("constant")) gw = new constantWidget(this,node,this.m8,this);
+       else if(node.startsWith("dac")) gw = new dacWidget(this,node,this.m8,this);
+       else if(node.startsWith("adc")) gw = new adcWidget(this,node,this.m8,this);
 
        gw.getActions().addAction(moveAction2);
        this.mainLayer.addChild(gw);
+       this.validate();
        return gw;
 
     }
@@ -96,14 +156,19 @@ public class avrScene extends GraphScene<String, String> {
         ConnectionWidget con = new ConnectionWidget(this);
         connectionLayer.addChild (con);
 
-
+        this.edgeCounter++;
+        this.validate();
         return con;
     }
 
     @Override
     protected void attachEdgeSourceAnchor(String edge, String arg1, String sourceNode) {
-         Widget src = this.findWidget(sourceNode);
+         genericWidget src = (genericWidget) this.findWidget(sourceNode);
          ConnectionWidget edgeWidget = (ConnectionWidget) this.findWidget(edge);
+         genericWidget gwSrc;
+
+    //     if (src instanceof portWidget) gwSrc =
+        
         Anchor sourceAnchor = AnchorFactory.createCenterAnchor(src);
         edgeWidget.setSourceAnchor(sourceAnchor);
 

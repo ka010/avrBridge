@@ -8,6 +8,7 @@ package avrBridgeJavaDev.graph;
 import avrBridgeJavaDev.graph.widgets.genericWidget;
 import avrBridgeJavaDev.graph.widgets.inputPinWidget;
 import avrBridgeJavaDev.graph.widgets.outputPinWidget;
+import avrBridgeJavaDev.graph.widgets.pinWidget;
 import java.awt.Point;
 import org.netbeans.api.visual.action.ConnectProvider;
 import org.netbeans.api.visual.action.ConnectorState;
@@ -49,15 +50,18 @@ private avrScene scene;
     }
 
     public void createConnection(Widget arg0, Widget arg1) {
-
+        String src;
+        String target;
         String counter = String.valueOf(scene.getEdgeCounter());
         String edge = "edge"+counter;
-        ConnectionWidget con = (ConnectionWidget) scene.addNode(edge);
+        ConnectionWidget con = (ConnectionWidget) scene.addEdge(edge);
 
-        genericWidget gwSrc = (genericWidget) arg0;
-        genericWidget gwTarget = (genericWidget) arg1;
-        scene.setEdgeSource(edge, gwSrc.getId());
-        scene.setEdgeTarget(edge, gwTarget.getId());
+        genericWidget gwSrc = ((genericWidget) arg0).getParent();
+        genericWidget gwTarget = ((genericWidget) arg1).getParent();
+        System.out.println(gwSrc.getId());
+
+         scene.setEdgeSource(edge, gwSrc.getId());
+         scene.setEdgeTarget(edge, gwTarget.getId());
 
     }
 

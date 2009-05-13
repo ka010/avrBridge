@@ -6,9 +6,12 @@
 package avrBridgeJavaDev.graph.widgets;
 
 import avrBridgeJavaDev.avr;
+import avrBridgeJavaDev.graph.avrScene;
+import java.util.Iterator;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.api.visual.widget.Widget;
 
 /**
  *
@@ -23,19 +26,21 @@ private pinWidget pin4;
 private pinWidget pin5;
 private pinWidget pin6;
 private pinWidget pin7;
-
-    public portWidget(Scene sc, String id, avr m8) {
-        super(sc,id,m8);
+private avrScene scene;
+    public portWidget(Scene sc, String id, avr m8,Widget parent) {
+        super(sc,id,m8,parent);
+        this.scene = (avrScene) sc;
         this.setTitle(id);
+        this.addDisplay();
 
-        this.pin0 = new pinWidget(sc,"pin0",m8);
-        this.pin1 = new pinWidget(sc,"pin1",m8);
-        this.pin2 = new pinWidget(sc,"pin2",m8);
-        this.pin3 = new pinWidget(sc,"pin3",m8);
-        this.pin4 = new pinWidget(sc,"pin4",m8);
-        this.pin5 = new pinWidget(sc,"pin5",m8);
-        this.pin6 = new pinWidget(sc,"pin6",m8);
-        this.pin7 = new pinWidget(sc,"pin7",m8);
+        this.pin0 = new pinWidget(sc,"pin0",m8,this);
+        this.pin1 = new pinWidget(sc,"pin1",m8,this);
+        this.pin2 = new pinWidget(sc,"pin2",m8,this);
+        this.pin3 = new pinWidget(sc,"pin3",m8,this);
+        this.pin4 = new pinWidget(sc,"pin4",m8,this);
+        this.pin5 = new pinWidget(sc,"pin5",m8,this);
+        this.pin6 = new pinWidget(sc,"pin6",m8,this);
+        this.pin7 = new pinWidget(sc,"pin7",m8,this);
 
         pin0.setAvrPort(id.charAt(id.length()-1));
         this.addChild(pin0);
@@ -46,6 +51,26 @@ private pinWidget pin7;
         this.addChild(pin5);
         this.addChild(pin6);
         this.addChild(pin7);
+    
+
     }
 
+    @Override
+    public void tick() {
+       Widget w = null;
+            genericWidget gw = null;
+
+            Iterator it = getChildren().iterator();
+            while(it.hasNext()) {
+                w = (Widget) it.next();
+                if (w instanceof genericWidget ) {
+
+                    gw = (genericWidget) w;
+                    gw.tick();
+                }
+            }
+    }
+
+
+    
 }

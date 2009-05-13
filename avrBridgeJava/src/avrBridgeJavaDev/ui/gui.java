@@ -188,12 +188,14 @@ public class gui extends javax.swing.JFrame {
         jPanel12.add(jLabel7);
 
         jTextField5.setText("jTextField5");
+        jTextField5.setPreferredSize(new java.awt.Dimension(84, 28));
         jPanel12.add(jTextField5);
 
         jLabel8.setText("1:");
         jPanel12.add(jLabel8);
 
         jTextField6.setText("jTextField5");
+        jTextField6.setScrollOffset(1);
         jPanel12.add(jTextField6);
 
         jLabel9.setText("2:");
@@ -672,7 +674,7 @@ public class gui extends javax.swing.JFrame {
            int adcVal = m8.getAdc(m8.PIN1);
         //   if (adcVal> ) m8.setPortPin(m8.PORTC, m8.PIN5, m8.HIGH);
           // else m8.setPortPin(m8.PORTC, m8.PIN5, m8.LOW);
-           jTextField1.setText(String.valueOf(adcVal));
+          // jTextField1.setText(String.valueOf(adcVal));
 
         }
 
