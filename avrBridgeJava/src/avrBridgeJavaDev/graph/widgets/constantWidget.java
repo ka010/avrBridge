@@ -17,9 +17,18 @@ public class constantWidget extends genericWidget {
 
     public constantWidget(Scene sc, String id, avr m8,Widget parent) {
         super(sc,id,m8,parent);
-        this.addDisplay();
+        //this.addDisplay();
+        this.addValueLabel();
+
+        this.createLabelEditor(this.getValueLabel());
         this.addOutputPin();
     }
+
+    @Override
+    public void tick() {
+     val =Integer.parseInt(this.getValueLabel().getLabel());
+    }
+
 
 
 }

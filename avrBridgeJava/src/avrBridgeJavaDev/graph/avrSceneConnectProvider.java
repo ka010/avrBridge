@@ -59,9 +59,9 @@ private avrScene scene;
         genericWidget gwSrc = ((genericWidget) arg0).getParent();
         genericWidget gwTarget = ((genericWidget) arg1).getParent();
         System.out.println(gwSrc.getId());
-
-         scene.setEdgeSource(edge, gwSrc.getId());
-         scene.setEdgeTarget(edge, gwTarget.getId());
+        gwTarget.addInput(gwSrc);
+         scene.attachEdgeSourceAnchor(edge, gwSrc.getId(),arg0);
+         scene.attachTargetSourceAnchor(edge, gwTarget.getId(),arg1);
 
     }
 

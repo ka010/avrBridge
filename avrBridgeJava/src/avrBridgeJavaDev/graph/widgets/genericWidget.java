@@ -10,7 +10,9 @@ import avrBridgeJavaDev.graph.clockListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.TextFieldInplaceEditor;
+import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.layout.LayoutFactory.SerialAlignment;
@@ -27,13 +29,16 @@ protected avr m8;
 protected int val=0;
 private String id;
 private Widget parent;
-private ArrayList<String> inputs = new ArrayList();
-private ArrayList<String> outputs = new ArrayList();
+private ArrayList<genericWidget> inputs = new ArrayList();
+private ArrayList<genericWidget> outputs = new ArrayList();
 private LabelWidget title;
 private Scene scene;
 private inputPinWidget inPin;
 private outputPinWidget outPin;
 private LabelWidget display;
+private LabelWidget valueLabel;
+private int avrPin;
+private int avrPort;
     public genericWidget(Scene sc, String id, avr m8, Widget parent) {
         super(sc);
         this.scene = sc;
@@ -74,6 +79,33 @@ private LabelWidget display;
         return w;
     }
 
+    public Widget addValueLabel() {
+        Widget w = new LabelWidget(scene);
+        this.valueLabel = (LabelWidget) w;
+        this.valueLabel.setLabel("0");
+        w.setBorder(BorderFactory.createLineBorder());
+        this.addChild(w);
+        return w;
+    }
+
+    public WidgetAction createLabelEditor(Widget w) {
+        WidgetAction a = ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor(w));
+        w.getActions().addAction(a);
+        return a;
+    }
+
+    public LabelWidget getValueLabel() {
+        return valueLabel;
+    }
+
+    public void setValueLabel(LabelWidget valueLabel) {
+        this.valueLabel = valueLabel;
+    }
+
+    public void setValueLabel(String valueLabel) {
+        this.valueLabel.setLabel(valueLabel);
+    }
+
     public void setDisplay(String display) {
         this.display.setLabel(display);
     }
@@ -89,19 +121,19 @@ private LabelWidget display;
 
     
 
-    public ArrayList<String> getInputs() {
+    public ArrayList<genericWidget> getInputs() {
         return inputs;
     }
 
-    public ArrayList<String> getOutputs() {
+    public ArrayList<genericWidget> getOutputs() {
         return outputs;
     }
 
-    public void addInput(String input) {
+    public void addInput(genericWidget input) {
         this.inputs.add(input);
     }
 
-    public void addOutput(String output) {
+    public void addOutput(genericWidget output) {
         this.outputs.add(output);
     }
 
@@ -113,6 +145,10 @@ private LabelWidget display;
         this.inputs.remove(input);
     }
 
+    public genericWidget getInput() {
+        if (inputs.size()>0) return inputs.get(0);
+        else return null;
+    }
     public void setTitle(String title) {
         this.title.setLabel(title);
     }
@@ -153,6 +189,22 @@ private LabelWidget display;
         this.m8 = m8;
     }
 
+    public int getAvrPin() {
+        return avrPin;
+    }
+
+    public void setAvrPin(int avrPin) {
+        this.avrPin = avrPin;
+    }
+
+    public int getAvrPort() {
+        return avrPort;
+    }
+
+    public void setAvrPort(int avrPort) {
+        this.avrPort = avrPort;
+    }
+
 
 
     public void setParent(Widget parent) {
@@ -167,6 +219,7 @@ private LabelWidget display;
         this.title = title;
     }
 
+
     public void actionPerformed(ActionEvent e) {
        this.tick();
     }
@@ -176,6 +229,15 @@ private LabelWidget display;
 public class LabelTextFieldEditor implements TextFieldInplaceEditor {
     private Widget host;
     private Widget widget;
+
+        public LabelTextFieldEditor(Widget host) {
+            this.host =  host;
+        }
+
+        public LabelTextFieldEditor() {
+        }
+
+
 
         /**
          *
@@ -204,6 +266,7 @@ public class LabelTextFieldEditor implements TextFieldInplaceEditor {
          */
         public void setText(Widget widget, String text) {
             ((LabelWidget) widget).setLabel (text);
+            if (host instanceof scaleWidget) ((scaleWidget)host).setFactor(Integer.parseInt(text));
             
         }
 

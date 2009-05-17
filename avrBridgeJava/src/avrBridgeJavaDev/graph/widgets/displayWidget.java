@@ -23,6 +23,10 @@ public class displayWidget extends genericWidget {
 
     @Override
     public void tick() {
+        
+        if (this.getInput()!=null) {
+            val = this.getInput().getVal();
+        }
         this.setDisplay(Integer.toBinaryString(val));
     }
 

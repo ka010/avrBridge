@@ -6,9 +6,11 @@
 package avrBridgeJavaDev.graph.widgets;
 
 import avrBridgeJavaDev.avr;
+import avrBridgeJavaDev.graph.menus.pinMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.layout.LayoutFactory.SerialAlignment;
@@ -42,7 +44,8 @@ private int avrPin =0;
         display.setBackground(Color.black);
         
         outputPin = (outputPinWidget) this.addOutputPin();//new outputPinWidget(sc,id+"output",m8,this.getParent());
-        
+
+        this.getActions().addAction(ActionFactory.createPopupMenuAction(new pinMenu()));
         this.setLayout(LayoutFactory.createHorizontalFlowLayout(SerialAlignment.CENTER, 10));
         //this.setPreferredSize(new Dimension(150,16));
         this.setTitle("");

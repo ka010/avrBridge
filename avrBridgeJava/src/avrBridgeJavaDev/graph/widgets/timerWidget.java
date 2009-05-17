@@ -22,12 +22,12 @@ private javax.swing.Timer timer;
 private int counter=0;
 private int bottom=0;
 private int top=255;
-    public timerWidget(Scene sc,String id, avr m8,Widget parent) {
+    public timerWidget(Scene sc,String id, avr m8,Widget parent,int delay) {
         super(sc,id,m8,parent);
         this.addDisplay();
         this.addOutputPin();
         this.getDisplay().setPreferredSize(new Dimension(80,14));
-        this.timer = new Timer(500, new timerListener() {
+        this.timer = new Timer(delay, new timerListener() {
 
             public void actionPerformed(ActionEvent e) {
                 if (counter <top) counter++;

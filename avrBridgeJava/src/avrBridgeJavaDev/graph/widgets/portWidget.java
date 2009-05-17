@@ -27,12 +27,19 @@ private pinWidget pin5;
 private pinWidget pin6;
 private pinWidget pin7;
 private avrScene scene;
+private int avrPort=0;
     public portWidget(Scene sc, String id, avr m8,Widget parent) {
         super(sc,id,m8,parent);
         this.scene = (avrScene) sc;
         this.setTitle(id);
         this.addDisplay();
 
+        this.addInputPin();
+        this.addOutputPin();
+
+        if (id.endsWith("B")) avrPort = 0;
+        if (id.endsWith("C")) avrPort = 1;
+        if (id.endsWith("D")) avrPort = 2;
         this.pin0 = new pinWidget(sc,"pin0",m8,this);
         this.pin1 = new pinWidget(sc,"pin1",m8,this);
         this.pin2 = new pinWidget(sc,"pin2",m8,this);
@@ -42,7 +49,15 @@ private avrScene scene;
         this.pin6 = new pinWidget(sc,"pin6",m8,this);
         this.pin7 = new pinWidget(sc,"pin7",m8,this);
 
-        pin0.setAvrPort(id.charAt(id.length()-1));
+        pin0.setAvrPort(avrPort);
+        pin1.setAvrPort(avrPort);
+        pin2.setAvrPort(avrPort);
+        pin3.setAvrPort(avrPort);
+        pin4.setAvrPort(avrPort);
+        pin5.setAvrPort(avrPort);
+        pin6.setAvrPort(avrPort);
+        pin7.setAvrPort(avrPort);
+
         this.addChild(pin0);
         this.addChild(pin1);
         this.addChild(pin2);
@@ -51,7 +66,7 @@ private avrScene scene;
         this.addChild(pin5);
         this.addChild(pin6);
         this.addChild(pin7);
-    
+        
 
     }
 
@@ -69,6 +84,14 @@ private avrScene scene;
                     gw.tick();
                 }
             }
+
+            if (this.getInput()!=null) {
+                val = this.getInput().getVal();
+                this.m8.setPort(avrPort, val);
+            }
+            val = this.m8.getPort(avrPort);
+            this.setDisplay(Integer.toBinaryString(val));
+
     }
 
 
