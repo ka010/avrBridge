@@ -41,11 +41,13 @@ CXXFLAGS=
 FFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=/usr/local/lib/libusb-1.0.dylib
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	${MAKE}  -f nbproject/Makefile-Debug.mk dist/Debug/${PLATFORM}/libavrBridgeC.dylib
+
+dist/Debug/${PLATFORM}/libavrBridgeC.dylib: /usr/local/lib/libusb-1.0.dylib
 
 dist/Debug/${PLATFORM}/libavrBridgeC.dylib: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/${PLATFORM}

@@ -1,0 +1,1 @@
+cmd_/home/dr3ad/Desktop/avrBridge/module_proc/avrBridge_proc.ko := ld -r -m elf_i386  --build-id -o /home/dr3ad/Desktop/avrBridge/module_proc/avrBridge_proc.ko /home/dr3ad/Desktop/avrBridge/module_proc/avrBridge_proc.o /home/dr3ad/Desktop/avrBridge/module_proc/avrBridge_proc.mod.o

@@ -104,7 +104,7 @@ void timer2_init(void) {
     TCCR2 |= _BV(WGM21) | _BV(WGM20);										// set PWM mode 
     TCCR2 = (TCCR2 | _BV(COM21)) & ~_BV(COM20);								// do non-inverting PWM on pin OC2A 
 	TCNT2 = 0x01;
-    OCR2 = pgm_read_byte(&sinewave[0]);  								    // set initial pulse width to the first sample.
+    OCR2 =0;								    // set initial pulse width to the first sample.
     TCCR2 = (TCCR2 & ~(_BV(CS12) | _BV(CS11))) | _BV(CS10);					// start timer
 }
 
@@ -144,7 +144,7 @@ uint16_t getAdcPortPin(uint8_t mux)
 	return result;
 }
 
-int setDac(pin, val) {
+void setDac(pin, val) {
 		switch (pin	) {
 			case 0:
 				OCR1A = val;
@@ -157,6 +157,7 @@ int setDac(pin, val) {
 				break;
 
 		}
+	
 }
 
 void setLEDStatus(uchar status) {
@@ -239,11 +240,11 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 	static uchar replyBuf[4];
 	usbMsgPtr = replyBuf;
 	uchar tmp=0;	
-	unsigned int port=0;
-	unsigned int pin =0;
-	unsigned int stat =0;
-	unsigned int dir =0;
-	unsigned int val =0;
+	unsigned char port=0;
+	unsigned char pin =0;
+	unsigned char stat =0;
+	unsigned char dir =0;
+	unsigned   val =0;
 
 	uint16_t adcval =0;
 	    switch(rq->bRequest){
@@ -264,7 +265,9 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 				setLEDStatus(0x00);
 				return 2;
 			case CMD_PORT:
-				setPort(rq->wValue.bytes[1],rq->wValue.bytes[0]);
+				tmp = rq->wValue.bytes[0];
+				port = (tmp & PORTMASK)>>6;
+				setPort(rq->wValue.bytes[1],port);
 				return 2;
 			case CMD_PIN:
 				tmp = rq->wValue.bytes[0];
@@ -282,7 +285,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 				return 2;
 			case CMD_GPORT:
 				tmp = rq->wValue.bytes[0];
-				switch(tmp) {
+				port = (tmp & PORTMASK)>>6;
+				switch(port) {
 					case _PORTB:
 						replyBuf[0]=PINB;
 						break;
@@ -310,11 +314,11 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 				return 2;
 			case CMD_DAC:
 				tmp = rq->wValue.bytes[0];
-				pin = (tmp >>8);
-				val = (tmp & 0b0000000011111111);
-				setDac(rq->wValue.bytes[1],rq->wValue.bytes[0]);
-				//OCR1A = tmp;
-				break;
+				pin = (tmp & PINMASK)>>2;
+				val = rq->wValue.bytes[1];
+				setDac(pin,val);
+				replyBuf[0] = val;
+				return 1;
 
 			
 	    }

@@ -1,0 +1,1 @@
+cmd_/home/dr3ad/Desktop/avrBridge/module_usbfs/avrBridge_usbfs.ko := ld -r -m elf_i386  --build-id -o /home/dr3ad/Desktop/avrBridge/module_usbfs/avrBridge_usbfs.ko /home/dr3ad/Desktop/avrBridge/module_usbfs/avrBridge_usbfs.o /home/dr3ad/Desktop/avrBridge/module_usbfs/avrBridge_usbfs.mod.o

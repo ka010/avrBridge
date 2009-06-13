@@ -1,13 +1,15 @@
 
 
-//#include "avrBrideC.h"
-
+#include "avrBridgeC.h"
+#include <libusb-1.0/libusb.h>
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "/usr/local/AVRMacPack-20090319/include/usb.h";
+#include <sys/types.h>
+
 
 #define USBDEV_SHARED_VENDOR    0x16C0  /* VOTI */
 #define USBDEV_SHARED_PRODUCT   0x05DC  /* Obdev's free shared PID */
@@ -68,6 +70,19 @@ unsigned char		PORTMASK = 196;
 unsigned char		PINMASK = 60;
 unsigned char		STATMASK = 3;
 
+typedef struct _validDev {
+    int idVendor;
+    int idProduct;
+    int busNumber;
+    int devAddress;
+} validDev;
+
+usb_dev_handle *devList[5];
+
+int devCounter=0;
+
+int currentDev=0;
+
 static void usage(char *name)
 {
     fprintf(stderr, "usage:\n");
@@ -124,6 +139,8 @@ static int          didUsbInit = 0;
                 char    string[256];
                 int     len;
                 handle = usb_open(dev);														// open it
+                devList[devCounter] = handle;
+                devCounter++;
                 if(!handle){																// ooops
                     errorCode = USB_ERROR_ACCESS;
                     fprintf(stderr, "Warning: cannot open USB device: %s\n", usb_strerror());
@@ -157,18 +174,70 @@ static int          didUsbInit = 0;
                 handle = NULL;
             }
         }
-        if(handle)
-            break;
+        //if(handle)
+            //break;
     }
     if(handle != NULL){
         errorCode = 0;
         *device = handle;
+        printf("devcounter %d:", devCounter);
+        printf("devlist %d:", devList[0]);
+        printf("devlist %d:", devList[1]);
     }
     return errorCode;
 }
 
-int initUsbLib() {
 
+void print_devs(libusb_device **devs)
+{
+	libusb_device *dev;
+	int i = 0;
+        validDev avrDev;
+	while ((dev = devs[i++]) != NULL) {
+		struct libusb_device_descriptor desc;
+		int r = libusb_get_device_descriptor(dev, &desc);
+		if (r < 0) {
+			fprintf(stderr, "failed to get device descriptor");
+			return;
+		}
+                if (desc.idVendor == USBDEV_SHARED_VENDOR && desc.idProduct == USBDEV_SHARED_PRODUCT) {
+                    printf("found a MetaBoard!");
+                    avrDev.idVendor = desc.idVendor;
+                    avrDev.idProduct = desc.idProduct;
+                    avrDev.busNumber = libusb_get_bus_number(dev);
+                    avrDev.devAddress = libusb_get_device_address(dev);
+                  //  devList[devCounter] = avrDev;
+                    devCounter++;
+                }
+		printf("%04x:%04x (bus %d, device %d)\n",
+			desc.idVendor, desc.idProduct,
+			libusb_get_bus_number(dev), libusb_get_device_address(dev));
+	}
+}
+
+int get_devs(void)
+{
+	libusb_device **devs;
+	int r;
+	ssize_t cnt;
+
+	r = libusb_init(NULL);
+	if (r < 0)
+		return r;
+
+	cnt = libusb_get_device_list(NULL, &devs);
+	if (cnt < 0)
+		return (int) cnt;
+
+	print_devs(devs);
+	libusb_free_device_list(devs, 1);
+
+	libusb_exit(NULL);
+	return 0;
+}
+
+int initUsbLib() {
+//aquire device handles
 	if(usbOpenDevice(&handle, USBDEV_SHARED_VENDOR, "www.obdev.at", USBDEV_SHARED_PRODUCT, "PowerSwitch") != 0){
         fprintf(stderr, "Could not find USB device \"metaboard\" with vid=0x%x pid=0x%x\n", USBDEV_SHARED_VENDOR, USBDEV_SHARED_PRODUCT);
         exit(1);
@@ -179,7 +248,7 @@ int initUsbLib() {
 int testUsbLib() {
 	int v, r;
 	v = rand() & 0xffff;
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_ECHO, v, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_ECHO, v, 0, (char *)buffer, sizeof(buffer), 5000);
 	if(nBytes < 2){
 		if(nBytes < 0)
 			fprintf(stderr, "USB error: %s\n", usb_strerror());
@@ -209,7 +278,7 @@ int statusUsbLib() {
 
 	printf("val= %d %d %d %d ", val ,port, pin, stat);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GET, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GET, val, 0, (char *)buffer, sizeof(buffer), 5000);
 	if(nBytes < 4){
 		if(nBytes < 0)
 			fprintf(stderr, "USB error: %s\n", usb_strerror());
@@ -224,12 +293,26 @@ int statusUsbLib() {
 
 }
 
+int setCurrentDev(int dev) {
+    currentDev=dev;
+}
+
 int setPort(int prt, int val) {
 	int send = prt;
 	send |= (val << 8);
 
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PORT, send, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PORT, send, 0, (char *)buffer, sizeof(buffer), 5000);
+
+	return nBytes;
+}
+
+int setDevPort(int dev, int prt, int val) {
+	int send = prt;
+	send |= (val << 8);
+
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PORT, send, 0, (char *)buffer, sizeof(buffer), 5000);
 
 	return nBytes;
 }
@@ -249,7 +332,27 @@ int setPortPin(int prt, int pin, int on) {
 
 	if (DEBUG_LEVEL>0) fprintf(stderr, "val= %d %d %d %d\n", val, port2, pin2, stat2);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
+
+	return nBytes;
+}
+
+int setDevPortPin(int dev, int prt, int pin, int on) {
+
+	//val=00 0000 00
+	//  port pin  on
+	unsigned char val=0xff;
+	val =  (prt << 6);
+	val |= (pin << 2);
+	val |= on;
+
+	unsigned int port2 = (val & PORTMASK)>>6;
+	unsigned int pin2 = (val & PINMASK)>>2;
+	unsigned int stat2 = (val & STATMASK);
+
+	if (DEBUG_LEVEL>0) fprintf(stderr, "val= %d %d %d %d\n", val, port2, pin2, stat2);
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_PIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
 
 	return nBytes;
 }
@@ -268,14 +371,42 @@ int setPortPinDir(int prt, int pin, int dir) {
 
 	if (DEBUG_LEVEL>0) fprintf(stderr, "val= %d %d %d %d\n", val, port2, pin2, stat2);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DDR, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DDR, val, 0, (char *)buffer, sizeof(buffer), 5000);
+
+	return nBytes;
+}
+
+int setDevPortPinDir(int dev, int prt, int pin, int dir) {
+	//val=00 0000 00
+	//  port pin  dir
+	unsigned char val=0xff;
+	val =  (prt << 6);
+	val |= (pin << 2);
+	val |= dir;
+
+	unsigned int port2 = (val & PORTMASK)>>6;
+	unsigned int pin2 = (val & PINMASK)>>2;
+	unsigned int stat2 = (val & STATMASK);
+
+	if (DEBUG_LEVEL>0) fprintf(stderr, "val= %d %d %d %d\n", val, port2, pin2, stat2);
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DDR, val, 0, (char *)buffer, sizeof(buffer), 5000);
 
 	return nBytes;
 }
 
 int getPort(int prt) {
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPORT, prt, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPORT, prt, 0, (char *)buffer, sizeof(buffer), 5000);
+	int res = buffer[0];
+	if (DEBUG_LEVEL>0) fprintf(stderr, "port %d = %d\n", prt, res);
+
+	return res;
+}
+
+int getDevPort(int dev, int prt) {
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPORT, prt, 0, (char *)buffer, sizeof(buffer), 5000);
 	int res = buffer[0];
 	if (DEBUG_LEVEL>0) fprintf(stderr, "port %d = %d\n", prt, res);
 
@@ -287,7 +418,19 @@ int getPortPin(int prt, int pin) {
 	val =  (prt << 6);
 	val |= (pin << 2);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	int res = buffer[0];
+	if (DEBUG_LEVEL>0) fprintf(stderr, "pin %d at port %d = %d\n", pin,prt, res);
+
+	return res;
+}
+
+int getDevPortPin(int dev, int prt, int pin) {
+	unsigned char val=0xff;
+	val =  (prt << 6);
+	val |= (pin << 2);
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_GPIN, val, 0, (char *)buffer, sizeof(buffer), 5000);
 	int res = buffer[0];
 	if (DEBUG_LEVEL>0) fprintf(stderr, "pin %d at port %d = %d\n", pin,prt, res);
 
@@ -299,7 +442,7 @@ int getAdcPortPin(int prt, int pin) {
 	val =  (prt << 6);
 	val |= (pin << 2);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_ADC, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_ADC, val, 0, (char *)buffer, sizeof(buffer), 5000);
 	int msb = buffer[0];
         int lsb = buffer[1];
 	
@@ -311,13 +454,49 @@ int getAdcPortPin(int prt, int pin) {
 	return res;
 }
 
+int getDevAdcPortPin(int dev, int prt, int pin) {
+        unsigned char val=0xff;
+	val =  (prt << 6);
+	val |= (pin << 2);
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_ADC, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	int msb = buffer[0];
+        int lsb = buffer[1];
+
+        int res = 0;
+        res   = (msb << 8);
+        res  |= lsb;
+
+        if (DEBUG_LEVEL>0) fprintf(stderr, "pin %d at port %d = %d\n", pin,prt, res);
+	return res;
+}
+
 int setDac(int prt, int value) {
     unsigned char val=0xff;
          val = (value);
 	 val |=  (prt << 8);
 	//val |= (pin << 2);
 
-	nBytes = usb_control_msg(handle, USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DAC, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	nBytes = usb_control_msg(devList[currentDev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DAC, val, 0, (char *)buffer, sizeof(buffer), 5000);
+	int msb = buffer[0];
+        int lsb = buffer[1];
+
+        int res = 0;
+        res   = (msb << 8);
+        res  |= lsb;
+
+       // if (DEBUG_LEVEL>0) fprintf(stderr, "pin %d at port %d = %d\n", pin,prt, res);
+	return res;
+
+}
+
+int setDevDac(int dev, int prt, int value) {
+    unsigned char val=0xff;
+         val = (value);
+	 val |=  (prt << 8);
+	//val |= (pin << 2);
+
+	nBytes = usb_control_msg(devList[dev], USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, CMD_DAC, val, 0, (char *)buffer, sizeof(buffer), 5000);
 	int msb = buffer[0];
         int lsb = buffer[1];
 

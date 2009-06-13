@@ -1,0 +1,1 @@
+cmd_/home/dr3ad/Desktop/avrBridge/module0/avrBridge.ko := ld -r -m elf_i386  --build-id -o /home/dr3ad/Desktop/avrBridge/module0/avrBridge.ko /home/dr3ad/Desktop/avrBridge/module0/avrBridge.o /home/dr3ad/Desktop/avrBridge/module0/avrBridge.mod.o

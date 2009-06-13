@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>avrBridgeC.h</itemPath>
+      <itemPath>libusb.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -31,12 +33,19 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
+            <linkerLibFileItem>/usr/local/lib/libusb-1.0.dylib</linkerLibFileItem>
           </linkerLibItems>
           <commandLine>`/usr/local/AVRMacPack-20090319/bin/libusb-config --libs` -framework CoreFoundation</commandLine>
         </linkerTool>
       </compileType>
       <item path="avrBridgeC.c">
         <itemTool>0</itemTool>
+      </item>
+      <item path="avrBridgeC.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="libusb.h">
+        <itemTool>3</itemTool>
       </item>
     </conf>
     <conf name="Release" type="2">
@@ -62,6 +71,12 @@
       </compileType>
       <item path="avrBridgeC.c">
         <itemTool>0</itemTool>
+      </item>
+      <item path="avrBridgeC.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="libusb.h">
+        <itemTool>3</itemTool>
       </item>
     </conf>
   </confs>
